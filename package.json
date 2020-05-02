@@ -19,7 +19,6 @@
     "graphql": "15.0.0",
     "graphql-tools": "5.0.0",
     "mongoose": "5.9.10"
-
   },
   "bugs": {
     "url": "https://github.com/tenajesus/mongoGraphQL/issues"
