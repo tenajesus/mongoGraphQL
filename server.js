@@ -17,13 +17,7 @@ typeDefs = `
 type Alert{
     message:String
 }
-type Query{
-    _: Boolean
-}
 
-type Mutation{
-    _:Boolean
-}
 `;
 
 // Making schema
