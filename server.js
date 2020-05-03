@@ -5,6 +5,8 @@ const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const  bodyParser = require('body-parser');
 
+const TypeDefsFile = require('./definitions/docentes.defs');
+
 // mongoose conection
 moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true });
 // express server
@@ -26,7 +28,7 @@ type Mutation{
 
 // Making schema
 const schema = new makeExecutableSchema({
-    typeDefs: typeDefs,
+    typeDefs: [typeDefs,TypeDefsFile],
     resolvers: {
 
     }
