@@ -5,7 +5,9 @@ const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const  bodyParser = require('body-parser');
 
-const TypeDefsFile = require('./definitions/docentes.defs');
+
+const typedefsFile = require('./definitions/docentes.defs');
+const resolversFile = require('./resolvers/docentes.resolvers');
 
 // mongoose conection
 moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -17,15 +19,12 @@ typeDefs = `
 type Alert{
     message:String
 }
-
 `;
 
 // Making schema
 const schema = new makeExecutableSchema({
-    typeDefs: [typeDefs,TypeDefsFile],
-    resolvers: {
-
-    }
+    typeDefs: [typeDefs,typedefsFile],
+    resolvers: resolversFile
 });
 
 // middleware
