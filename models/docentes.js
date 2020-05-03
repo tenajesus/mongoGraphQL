@@ -6,4 +6,4 @@ const profeSchema = new mongoose.Schema({
   tipo: String
 });
 
-module.exports = mongoose.model('profes',profeSchema);
+module.exports = mongoose.model('profes',profeSchema);  
