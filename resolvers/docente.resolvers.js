@@ -18,15 +18,12 @@ module.exports = {
                 await docente.save();
                 return docente;
             },
-            updateDocente(obj,{ id, nombre, antiguedad, tipo }) {
-                const Index = docentes.findIndex((docente) => id === docente.id);
-                const pofe = docentes[Index];
-                const newPofe = Object.assign(pofe, { nombre, antiguedad, tipo });
-                pofe[Index] = newPofe;
-                return newPofe;
+             async updateDocente(obj, {id, input}) {
+                const docente = await Docentes.findByIdAndUpdate(id,input);
+                return docente;
             },
-            deleteDocente(obj,{ id }) {
-                docentes = docentes.filter((docente) => docente.id != id);
+            async deleteDocente(obj,{ id }) {
+                await Docentes.deleteOne({_id : id})
                 return {
                     result: `Se ha eliminado el profesor con id ${id}` //template strings
                 }

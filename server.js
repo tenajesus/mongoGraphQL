@@ -10,7 +10,7 @@ const typedefsFile = require('./definitions/docentes.defs');
 const resolversFile = require('./resolvers/docente.resolvers');
 
 // mongoose conection
-moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true });
+moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false });
 // express server
 const app = express();
 

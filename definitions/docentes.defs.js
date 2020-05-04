@@ -12,6 +12,12 @@ input DocentesInput{
    antiguedad:Int
    tipo:String!
 }
+
+input UpdateInput{
+    nombre:String
+    antiguedad:Int
+    tipo:String
+ }
 type Alerta{
     result:String
 }
@@ -23,7 +29,7 @@ extend type Query{
 
 extend type Mutation {
     addDocente(input: DocentesInput) : Docentes
-    updateDocente(id:ID!,nombre:String!,antiguedad:Int,tipo:String!) : Docentes
+    updateDocente(id:ID!,input:UpdateInput) : Docentes
     deleteDocente(id:ID!): Alerta
 }
 `;
