@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const profeSchema = new mongoose.Schema({
-  name: String,
+  nombre: String,
   antiguedad: Number,
   tipo: String
 });

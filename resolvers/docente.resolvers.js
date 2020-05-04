@@ -1,24 +1,22 @@
+const Docentes = require('../models/docentes');
+// const docentes = [];
 module.exports = {
         Query: {
-            getDocentes(obj,{ page, limit }) {
-                if (page !== undefined) {
-                    return docentes.slice(page * limit, (page + 1) * limit);
-                }
+            async getDocentes(obj,{ page, limit }) {
+                const docentes = await Docentes.find();
                 return docentes;
             },
             // Metodo para obtener datos individuales
-            getDocente(obj,{ id }) {
-                console.log(id);
-                return pofe = docentes.find((Docentes) => id == Docentes.id)
+            async getDocente(obj,{ id }) {
+                const docente = await Docentes.findById(id);
+                return docente;
             }
         },
         Mutation: {
-            addDocente(obj,{ input }) {
-                const { nombre, antiguedad, tipo } = input;
-                const id = String(docentes.length + 1);
-                const pofe = { id, nombre, antiguedad, tipo };
-                docentes.push(pofe);
-                return pofe;
+            async addDocente(obj,{ input }) {
+                const docente = new Docentes(input);
+                await docente.save();
+                return docente;
             },
             updateDocente(obj,{ id, nombre, antiguedad, tipo }) {
                 const Index = docentes.findIndex((docente) => id === docente.id);

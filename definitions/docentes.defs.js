@@ -1,3 +1,4 @@
+
 module.exports = `
 type Docentes{
     id: ID!
@@ -15,12 +16,12 @@ type Alerta{
     result:String
 }
 
-type Query{
+extend type Query{
     getDocentes(page: Int, limit: Int = 2): [Docentes]
     getDocente(id:ID!): Docentes
 }
 
-type Mutation {
+extend type Mutation {
     addDocente(input: DocentesInput) : Docentes
     updateDocente(id:ID!,nombre:String!,antiguedad:Int,tipo:String!) : Docentes
     deleteDocente(id:ID!): Alerta

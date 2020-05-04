@@ -7,7 +7,7 @@ const  bodyParser = require('body-parser');
 
 
 const typedefsFile = require('./definitions/docentes.defs');
-const resolversFile = require('./resolvers/docentes.resolvers');
+const resolversFile = require('./resolvers/docente.resolvers');
 
 // mongoose conection
 moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -18,6 +18,13 @@ const app = express();
 typeDefs = `
 type Alert{
     message:String
+}
+type Query{
+ algo_: Boolean
+}
+type Mutation{
+    otro_:Boolean
+
 }
 `;
 
