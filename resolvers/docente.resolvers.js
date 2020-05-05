@@ -3,7 +3,7 @@ const Docentes = require('../models/docentes');
 module.exports = {
         Query: {
             async getDocentes(obj,{ page, limit }) {
-                const docentes = await Docentes.find();
+                const docentes = await Docentes.find().limit(limit).skip((page - 1) * limit);
                 return docentes;
             },
             // Metodo para obtener datos individuales

@@ -23,7 +23,7 @@ type Alerta{
 }
 
 extend type Query{
-    getDocentes(page: Int, limit: Int = 2): [Docentes]
+    getDocentes(page: Int, limit: Int = 3): [Docentes]
     getDocente(id:ID!): Docentes
 }
 

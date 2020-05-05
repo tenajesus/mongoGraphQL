@@ -7,6 +7,7 @@ const  bodyParser = require('body-parser');
 
 
 const typedefsFile = require('./definitions/docentes.defs');
+const userdefsFile = require('./definitions/user.def');
 const resolversFile = require('./resolvers/docente.resolvers');
 
 // mongoose conection
@@ -30,7 +31,7 @@ type Mutation{
 
 // Making schema
 const schema = new makeExecutableSchema({
-    typeDefs: [typeDefs,typedefsFile],
+    typeDefs: [typeDefs,typedefsFile,userdefsFile],
     resolvers: resolversFile
 });
 
