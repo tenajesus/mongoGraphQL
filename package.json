@@ -21,7 +21,8 @@
     "graphql": "15.0.0",
     "graphql-server-express": "1.4.1",
     "graphql-tools": "5.0.0",
-    "mongoose": "5.9.10"
+    "mongoose": "5.9.10",
+    "lodash": "4.17.15"
   },
   "bugs": {
     "url": "https://github.com/tenajesus/mongoGraphQL/issues"
