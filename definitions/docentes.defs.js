@@ -2,9 +2,10 @@
 module.exports = `
 type Docentes{
     id: ID!
-    nombre: String!
+    nombre: String
     antiguedad : Int
-    tipo: String!
+    tipo: String
+    user:String
 }
 
 input DocentesInput{
@@ -23,12 +24,12 @@ type Alerta{
 }
 
 extend type Query{
-    getDocentes(page: Int, limit: Int = 3): [Docentes]
+    getDocentes(page: Int, limit: Int = 9): [Docentes]
     getDocente(id:ID!): Docentes
 }
 
 extend type Mutation {
-    addDocente(input: DocentesInput) : Docentes
+    addDocente(input: DocentesInput, user: ID!) : Docentes
     updateDocente(id:ID!,input:UpdateInput) : Docentes
     deleteDocente(id:ID!): Alerta
 }

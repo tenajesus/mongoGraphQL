@@ -5,10 +5,13 @@ const userSchema = new mongoose.Schema({
 
     email: String,
     hashedPassword :{
-        type:String,
+        type:String
     },
-    token: String
-
+    token: String,
+    docentes:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'profes'
+    }]
 });
 
 module.exports = mongoose.model('User',userSchema);

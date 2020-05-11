@@ -4,11 +4,14 @@ const moongose = require('mongoose');
 const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const  bodyParser = require('body-parser');
+const { merge } = require('lodash');
 
 
 const typedefsFile = require('./definitions/docentes.defs');
 const userdefsFile = require('./definitions/user.def');
 const resolversFile = require('./resolvers/docente.resolvers');
+const resolversUser = require('./resolvers/users.resolvers');
+
 
 // mongoose conection
 moongose.connect('mongodb://localhost/docentesdb', { useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false });
@@ -32,7 +35,7 @@ type Mutation{
 // Making schema
 const schema = new makeExecutableSchema({
     typeDefs: [typeDefs,typedefsFile,userdefsFile],
-    resolvers: resolversFile
+    resolvers: merge(resolversFile,resolversUser)
 });
 
 // middleware
@@ -40,6 +43,6 @@ app.use('/graphql',bodyParser.json(), graphqlExpress({ schema: schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 
-app.listen(2500, function () {
-    console.log('Servidor Iniciado')
+    app.listen(2500, function () {
+    console.log('Servidor Iniciado');
 });
