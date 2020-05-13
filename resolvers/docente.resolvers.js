@@ -5,8 +5,11 @@ const User = require('../models/user');
 module.exports = {
         Query: {
             async getDocentes(obj,{ page, limit }) {
-                const docentes = await Docente.find().limit(limit).skip((page - 1) * limit);
-                return docentes;
+                let docentes = Docente.find().populate('user')
+                if(page !== undefined){
+                docentes = await Docente.find().limit(limit).skip((page - 1) * limit);
+            }
+                return await docentes;
             },
             // Metodo para obtener datos individuales
             async getDocente(obj,{ id }) {
@@ -21,7 +24,8 @@ module.exports = {
                 const docente = new Docente({...input, user });
                 await docente.save();
                 // Guardamos el usuario asociandolo a su profesor
-                await userObj.docentes.push(docente);
+                userObj.docentes.push(docente);
+                await userObj.save();
                 return docente;
             },
              async updateDocente(obj, {id, input}) {

@@ -4,6 +4,7 @@ type User{
     email: String
     hashedPassword: String
     token: String
+    docentes: [Docentes]
 }
 extend type Query{
     getUsers: [User]

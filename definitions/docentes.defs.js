@@ -5,7 +5,7 @@ type Docentes{
     nombre: String
     antiguedad : Int
     tipo: String
-    user:String
+    user:User
 }
 
 input DocentesInput{

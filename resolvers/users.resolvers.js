@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Docente = require('../models/docentes');
 module.exports = {
     Query :{
         async getUsers(){
@@ -13,6 +14,12 @@ module.exports = {
             const user = new User(input);
             await user.save();
             return user;
+        }
+    },
+    // Resolver Personalizado para subcampos
+    User:{
+        async docentes(u){
+            return await Docente.find({ user: u.id }) ;
         }
     }
 }
