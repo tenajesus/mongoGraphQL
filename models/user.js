@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secret = require('../libs/env').secreto;
+
 const userSchema = new mongoose.Schema({
 
     email: String,
@@ -30,11 +33,14 @@ userSchema.pre('validate', async function () {
 // Metodo de Login
 userSchema.statics.authenticate = async function ({ email, password }) {
     const user = await this.findOne({ email });
-    if(!user) throw new Error('Email o contraseña erronea');
+    if (!user) throw new Error('Email o contraseña erronea');
 
-    const result = await bcrypt.compare(password,user.hashedPassword);
-    if(!result) throw new Error('El usuario es invalido, verifica tus datos');
+    const result = await bcrypt.compare(password, user.hashedPassword);
+    if (!result) throw new Error('El usuario es invalido, verifica tus datos');
 
+    // Generar Token
+    user.token = jwt.sign({ id: user.id }, secret);
+    user.save();
     return user;
 }
 
