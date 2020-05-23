@@ -14,6 +14,15 @@ module.exports = {
             const user = new User(input);
             await user.save();
             return user;
+        },
+        async logIn(obj,{ input }){
+            try{
+            const user = User.authenticate(input);
+            return user;
+            } catch(err){
+                console.log(err);
+                return null;
+            }
         }
     },
     // Resolver Personalizado para subcampos
