@@ -1,9 +1,7 @@
 const express = require('express');
 const moongose = require('mongoose');
 
-const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
-const  bodyParser = require('body-parser');
+const { ApolloServer } = require('apollo-server-express');
 const { merge } = require('lodash');
 
 
@@ -32,15 +30,17 @@ type Mutation{
 }
 `;
 
-// Making schema
-const schema = new makeExecutableSchema({
+// Instanciamos un nuevo servidor
+const server = new ApolloServer({
     typeDefs: [typeDefs,typedefsFile,userdefsFile],
     resolvers: merge(resolversFile,resolversUser)
 });
+// middleware graphql
+// app.use('/graphql',bodyParser.json(), graphqlExpress({ schema: schema }));
+// app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-// middleware
-app.use('/graphql',bodyParser.json(), graphqlExpress({ schema: schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+// Pasamos el Middleware con APOLLO
+server.applyMiddleware({app:app});
 
 
     app.listen(2500, function () {
