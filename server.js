@@ -9,6 +9,7 @@ const typedefsFile = require('./definitions/docentes.defs');
 const userdefsFile = require('./definitions/user.def');
 const resolversFile = require('./resolvers/docente.resolvers');
 const resolversUser = require('./resolvers/users.resolvers');
+const authFunc = require('./libs/auth');
 
 
 // mongoose conection
@@ -33,7 +34,8 @@ type Mutation{
 // Instanciamos un nuevo servidor
 const server = new ApolloServer({
     typeDefs: [typeDefs,typedefsFile,userdefsFile],
-    resolvers: merge(resolversFile,resolversUser)
+    resolvers: merge(resolversFile,resolversUser),
+    context: authFunc
 });
 // middleware graphql
 // app.use('/graphql',bodyParser.json(), graphqlExpress({ schema: schema }));

@@ -4,7 +4,8 @@ const User = require('../models/user');
 // const docentes = [];
 module.exports = {
         Query: {
-            async getDocentes(obj,{ page, limit }) {
+            async getDocentes(obj,{ page, limit },context) {
+                console.log(context);
                 let docentes = Docente.find();
                 if(page !== undefined){
                 docentes = await Docente.find().limit(limit).skip((page - 1) * limit);
